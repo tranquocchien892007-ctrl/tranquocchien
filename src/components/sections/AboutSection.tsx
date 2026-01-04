@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { User, Target, Lightbulb, Heart, BookOpen, Code, Cpu } from 'lucide-react';
+import { User, Target, Lightbulb, Heart, Dumbbell, Search, Sparkles } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 const interests = [
-  { icon: BookOpen, label: 'Học tập suốt đời' },
-  { icon: Code, label: 'Công nghệ & Lập trình' },
-  { icon: Cpu, label: 'Trí tuệ nhân tạo' },
+  { icon: Dumbbell, label: 'Thể thao' },
+  { icon: Search, label: 'Tìm tòi khám phá' },
+  { icon: Sparkles, label: 'Công nghệ & AI' },
 ];
 
 export function AboutSection() {
