@@ -129,7 +129,11 @@ const projects: Project[] = [
       "Sử dụng AI để giải thích các khái niệm phức tạp",
       "Luôn kiểm chứng thông tin từ AI với các nguồn đáng tin cậy"
     ],
-    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập"
+    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập",
+    evidenceFiles: [
+      { name: "Bài thực hành Chương 3 (HTML)", url: "/evidence/chapter3-evidence.html" },
+      { name: "Bài thực hành Chương 3 (PDF)", url: "/evidence/chapter3-evidence.pdf" }
+    ]
   },
   {
     id: 4,
