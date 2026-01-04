@@ -164,7 +164,8 @@ const projects: Project[] = [
       "Sử dụng AI để tóm tắt nội dung cuộc họp",
       "Tự chỉnh sửa và cá nhân hóa nội dung do AI gợi ý"
     ],
-    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập"
+    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập",
+    evidenceFiles: [{ name: "Bài thực hành Chương 4", url: "/evidence/chapter4-evidence.html" }]
   },
   {
     id: 5,
