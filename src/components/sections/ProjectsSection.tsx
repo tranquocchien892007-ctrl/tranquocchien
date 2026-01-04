@@ -196,7 +196,11 @@ const projects: Project[] = [
       "AI hỗ trợ tạo hình ảnh minh họa",
       "Tự điều chỉnh và hoàn thiện sản phẩm cuối cùng"
     ],
-    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập"
+    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập",
+    evidenceFiles: [
+      { name: "Bài thực hành Chương 5 (HTML)", url: "/evidence/chapter5-evidence.html" },
+      { name: "Bài thực hành Chương 5 (PDF)", url: "/evidence/chapter5-evidence.pdf" }
+    ]
   },
   {
     id: 6,
