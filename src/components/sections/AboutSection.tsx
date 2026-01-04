@@ -48,10 +48,10 @@ export function AboutSection() {
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               Xin chào, tôi là{' '}
-              <span className="gradient-text">[Tên của bạn]</span>
+              <span className="gradient-text">Trần Quốc Chiến</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Sinh viên ngành [Ngành học] với niềm đam mê khám phá công nghệ số và ứng dụng AI trong học tập.
+              Sinh viên ngành Kinh tế với niềm đam mê khám phá công nghệ số và ứng dụng AI trong học tập.
             </p>
           </motion.div>
 
