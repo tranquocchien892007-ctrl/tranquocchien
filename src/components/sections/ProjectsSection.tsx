@@ -32,6 +32,7 @@ interface Project {
   aiUsage: string[];
   evidencePlaceholder: string;
   evidenceImages?: string[];
+  evidenceFiles?: { name: string; url: string }[];
 }
 
 const projects: Project[] = [
@@ -96,7 +97,8 @@ const projects: Project[] = [
       "Sử dụng AI để tóm tắt tài liệu dài",
       "Tự đánh giá và viết lại nội dung theo cách hiểu cá nhân"
     ],
-    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập"
+    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập",
+    evidenceFiles: [{ name: "Bài thực hành Chương 2", url: "/evidence/chapter2-evidence.html" }]
   },
   {
     id: 3,
@@ -333,7 +335,9 @@ function ProjectDialog({ project, isOpen, onClose }: { project: Project | null; 
               <Image className="w-5 h-5 text-primary" />
               Minh chứng học tập
             </h4>
-            {project.evidenceImages && project.evidenceImages.length > 0 ? (
+            
+            {/* Evidence Images */}
+            {project.evidenceImages && project.evidenceImages.length > 0 && (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {project.evidenceImages.map((img, i) => (
                   <Dialog key={i}>
@@ -353,7 +357,35 @@ function ProjectDialog({ project, isOpen, onClose }: { project: Project | null; 
                   </Dialog>
                 ))}
               </div>
-            ) : (
+            )}
+
+            {/* Evidence Files */}
+            {project.evidenceFiles && project.evidenceFiles.length > 0 && (
+              <div className="space-y-3">
+                {project.evidenceFiles.map((file, i) => (
+                  <a
+                    key={i}
+                    href={file.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-4 rounded-lg border border-border hover:border-primary hover:bg-primary/5 transition-colors group"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                      <FileText className="w-6 h-6 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium group-hover:text-primary transition-colors">{file.name}</p>
+                      <p className="text-sm text-muted-foreground">Nhấn để xem file</p>
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  </a>
+                ))}
+              </div>
+            )}
+
+            {/* Empty State */}
+            {(!project.evidenceImages || project.evidenceImages.length === 0) && 
+             (!project.evidenceFiles || project.evidenceFiles.length === 0) && (
               <Card variant="outline" className="p-8 border-dashed">
                 <div className="text-center">
                   <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
@@ -366,8 +398,9 @@ function ProjectDialog({ project, isOpen, onClose }: { project: Project | null; 
                 </div>
               </Card>
             )}
+            
             <p className="text-sm text-muted-foreground italic">
-              * Các hình ảnh minh chứng cho quá trình thực hiện bài tập.
+              * Các minh chứng cho quá trình thực hiện bài tập.
             </p>
           </TabsContent>
 
