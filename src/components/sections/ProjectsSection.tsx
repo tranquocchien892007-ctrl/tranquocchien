@@ -1,10 +1,18 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { FolderOpen, ChevronRight, Monitor, Database, Brain, Users, Palette, Shield, ExternalLink, Image, FileText } from 'lucide-react';
+import { FolderOpen, ChevronRight, Monitor, Database, Brain, Users, Palette, Shield, ExternalLink, Image, FileText, Target, Sparkles, ZoomIn } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+// Import evidence images for Chapter 1
+import chapter1Evidence1 from '@/assets/evidence/chapter1-evidence-1.jpg';
+import chapter1Evidence2 from '@/assets/evidence/chapter1-evidence-2.jpg';
+import chapter1Evidence3 from '@/assets/evidence/chapter1-evidence-3.jpg';
+import chapter1Evidence4 from '@/assets/evidence/chapter1-evidence-4.jpg';
+import chapter1Evidence5 from '@/assets/evidence/chapter1-evidence-5.jpg';
+import chapter1Evidence6 from '@/assets/evidence/chapter1-evidence-6.jpg';
 
 interface Project {
   id: number;
@@ -23,6 +31,7 @@ interface Project {
   };
   aiUsage: string[];
   evidencePlaceholder: string;
+  evidenceImages?: string[];
 }
 
 const projects: Project[] = [
@@ -55,7 +64,8 @@ const projects: Project[] = [
       "Kiểm tra và chỉnh sửa ngữ pháp với sự hỗ trợ AI",
       "Không sao chép nguyên văn - tự viết lại bằng ngôn ngữ cá nhân"
     ],
-    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập"
+    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập",
+    evidenceImages: [chapter1Evidence1, chapter1Evidence2, chapter1Evidence3, chapter1Evidence4, chapter1Evidence5, chapter1Evidence6]
   },
   {
     id: 2,
@@ -323,19 +333,41 @@ function ProjectDialog({ project, isOpen, onClose }: { project: Project | null; 
               <Image className="w-5 h-5 text-primary" />
               Minh chứng học tập
             </h4>
-            <Card variant="outline" className="p-8 border-dashed">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
-                  <ExternalLink className="w-8 h-8 text-muted-foreground" />
-                </div>
-                <p className="text-muted-foreground mb-4">{project.evidencePlaceholder}</p>
-                <Button variant="outline" size="sm">
-                  Thêm minh chứng
-                </Button>
+            {project.evidenceImages && project.evidenceImages.length > 0 ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {project.evidenceImages.map((img, i) => (
+                  <Dialog key={i}>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      className="relative group cursor-pointer overflow-hidden rounded-lg border border-border"
+                    >
+                      <img 
+                        src={img} 
+                        alt={`Minh chứng ${i + 1}`} 
+                        className="w-full h-40 object-cover transition-transform group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <ZoomIn className="w-8 h-8 text-white" />
+                      </div>
+                    </motion.div>
+                  </Dialog>
+                ))}
               </div>
-            </Card>
+            ) : (
+              <Card variant="outline" className="p-8 border-dashed">
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
+                    <ExternalLink className="w-8 h-8 text-muted-foreground" />
+                  </div>
+                  <p className="text-muted-foreground mb-4">{project.evidencePlaceholder}</p>
+                  <Button variant="outline" size="sm">
+                    Thêm minh chứng
+                  </Button>
+                </div>
+              </Card>
+            )}
             <p className="text-sm text-muted-foreground italic">
-              * Phần này sẽ được bạn cập nhật với các hình ảnh, liên kết file hoặc video minh chứng thực tế.
+              * Các hình ảnh minh chứng cho quá trình thực hiện bài tập.
             </p>
           </TabsContent>
 
@@ -409,13 +441,6 @@ function ProjectDialog({ project, isOpen, onClose }: { project: Project | null; 
   );
 }
 
-const Target = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10" />
-    <circle cx="12" cy="12" r="6" />
-    <circle cx="12" cy="12" r="2" />
-  </svg>
-);
 
 export function ProjectsSection() {
   const ref = useRef(null);
