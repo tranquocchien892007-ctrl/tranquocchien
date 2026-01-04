@@ -231,7 +231,8 @@ const projects: Project[] = [
       "Sử dụng AI để kiểm tra cách trích dẫn",
       "Cam kết không sử dụng AI để gian lận học thuật"
     ],
-    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập"
+    evidencePlaceholder: "Tải lên hình ảnh hoặc liên kết minh chứng bài tập",
+    evidenceFiles: [{ name: "Bài thực hành Chương 6", url: "/evidence/chapter6-evidence.html" }]
   }
 ];
 
