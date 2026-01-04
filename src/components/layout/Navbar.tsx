@@ -8,7 +8,6 @@ const navItems = [
   { id: 'home', label: 'Trang chủ' },
   { id: 'about', label: 'Giới thiệu' },
   { id: 'projects', label: 'Dự án' },
-  { id: 'reflection', label: 'Phản tư' },
   { id: 'conclusion', label: 'Tổng kết' },
 ];
 
